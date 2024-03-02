@@ -25,6 +25,53 @@ Machine Learning is applied across numerous fields, including but not limited to
 
 In summary, Machine Learning empowers computers to learn from data and make informed decisions or predictions, revolutionizing how we solve complex problems and extract insights from large datasets across various domains.
 ```
+# Import necessary libraries
+import numpy as np
+import pandas as pd
+from sklearn import datasets
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.cluster import KMeans
+from sklearn.ensemble import RandomForestRegressor
+import tensorflow as tf
+from tensorflow import keras
+
+# Load a sample dataset
+iris = datasets.load_iris()
+X = iris.data
+y = iris.target
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Supervised Learning - Logistic Regression
+logistic_reg = LogisticRegression()
+logistic_reg.fit(X_train, y_train)
+logistic_score = logistic_reg.score(X_test, y_test)
+print("Logistic Regression Accuracy:", logistic_score)
+
+# Unsupervised Learning - KMeans Clustering
+kmeans = KMeans(n_clusters=3)
+kmeans.fit(X)
+cluster_labels = kmeans.labels_
+print("Cluster Labels:", cluster_labels)
+
+# Semi-Supervised Learning (Not demonstrated with code)
+
+# Reinforcement Learning (Not demonstrated with code)
+
+# Deep Learning - Neural Network
+model = keras.Sequential([
+    keras.layers.Dense(10, input_shape=(4,), activation='relu'),
+    keras.layers.Dense(3, activation='softmax')
+])
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+model.fit(X_train, y_train, epochs=50, batch_size=8, verbose=0)
+_, nn_accuracy = model.evaluate(X_test, y_test)
+print("Neural Network Accuracy:", nn_accuracy)
+
+# Application Examples (Not demonstrated with code)
+# Healthcare, Finance, Marketing, Transportation, E-commerce, Manufacturing
 
 
 
